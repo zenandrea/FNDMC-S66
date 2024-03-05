@@ -1,0 +1,15 @@
+mol,ref,test,name,formula,atoms,Nel,Nelv
+AcNH2,21_1,True,acetamide,H3C-CO-NH2,"{'H': 5, 'C': 2, 'N': 1, 'O': 1}",32,24
+AcOH,20_1,True,acetic acid,H3C-COOH,"{'H': 4, 'C': 2, 'N': 0, 'O': 2}",32,24
+Benzene,24_1,False,benzene,C6H6,"{'H': 6, 'C': 6, 'N': 0, 'O': 0}",42,30
+Cyclopentane,37_1,True,cyclopentane,(CH2)5,"{'H': 10, 'C': 5, 'N': 0, 'O': 0}",40,30
+Ethene,30_2,False,ethene,H2C=CH2,"{'H': 4, 'C': 2, 'N': 0, 'O': 0}",16,12
+Ethyne,32_2,False,ethyne,HC---CH,"{'H': 2, 'C': 2, 'N': 0, 'O': 0}",14,10
+MeNH2,56_2,False,methylamine,H3C-NH2,"{'H': 5, 'C': 1, 'N': 1, 'O': 0}",18,14
+MeOH,55_2,False,methanol,H3C-OH,"{'H': 4, 'C': 1, 'N': 0, 'O': 1}",18,14
+Neopentane,36_1,False,neopentane,C(CH3)4,"{'H': 12, 'C': 5, 'N': 0, 'O': 0}",42,32
+Pentane,34_1,False,pentane,H3C-CH2-CH2-CH2-CH3,"{'H': 12, 'C': 5, 'N': 0, 'O': 0}",42,32
+Peptide,57_2,True,peptide,H3C-CO-NH-CH3,"{'H': 7, 'C': 3, 'N': 1, 'O': 1}",40,30
+Pyridine,25_1,False,pyridine,NC5H5,"{'H': 5, 'C': 5, 'N': 1, 'O': 0}",42,30
+Uracil,26_1,True,uracil,H4C4N2O2,"{'H': 4, 'C': 4, 'N': 2, 'O': 2}",58,42
+Water,01_2,False,water,H2O,"{'H': 2, 'C': 0, 'N': 0, 'O': 1}",10,8

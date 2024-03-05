@@ -1,0 +1,14 @@
+AcNH2
+AcOH
+Benzene
+Cyclopentane
+Ethene
+Ethyne
+MeNH2
+MeOH
+Neopentane
+Pentane
+Peptide
+Pyridine
+Uracil
+Water
