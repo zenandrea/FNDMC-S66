@@ -4,7 +4,12 @@
 # Script to set up the plotting environment for Jupyter notebooks
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MultipleLocator
+import pandas as pd
+import warnings
+from scipy.optimize import OptimizeWarning
 
+# Suppress the specific warning
+warnings.filterwarnings("ignore", category=OptimizeWarning)
 
 def texfalse_import():
     plt.rcParams.update(
@@ -87,3 +92,88 @@ plt.rcParams["axes.prop_cycle"] = plt.cycler(
         "#000000",
     ]
 )
+
+def convert_df_to_latex_input(
+    df,
+    start_input = '\\begin{table}\n',
+    end_input = '\n\\end{table}',
+    label = "tab:default",
+    caption = "This is a table",
+    replace_input = {},
+    df_latex_skip = 0,
+    adjustbox = 0,
+    scalebox = False,
+    multiindex_sep = "",
+    filename = "./table.tex",
+    index = True,
+    column_format = None,
+    center = False,
+    rotate_column_header = False,
+    output_str = False
+):
+    if column_format is None:
+        column_format = "l" + "r" * len(df.columns)
+    
+    if label != "":
+        label_input = r"\label{" + label + r"}"
+    else:
+        label_input = ""
+    caption_input = r"\caption{" + label_input + caption +  "}"
+
+    if rotate_column_header:
+        df.columns = [r'\rotatebox{90}{' + col + '}' for col in df.columns]
+
+    with pd.option_context("max_colwidth", 1000):
+        df_latex_input = df.to_latex(escape=False, column_format=column_format,multicolumn_format='c', multicolumn=True,index=index)
+    for key in replace_input:
+        df_latex_input = df_latex_input.replace(key, replace_input[key])
+    
+    df_latex_input_lines = df_latex_input.splitlines()[df_latex_skip:]
+    # Get index of line with midrule
+    toprule_index = [i for i, line in enumerate(df_latex_input_lines) if "toprule" in line][0]
+    df_latex_input_lines[toprule_index+1] = df_latex_input_lines[toprule_index+1] + ' ' + multiindex_sep
+    df_latex_input = '\n'.join(df_latex_input_lines)
+    end_adjustbox = False
+
+    if output_str:
+        latex_string = ""
+        latex_string += start_input + "\n"
+        latex_string += caption_input + "\n"
+        if center == True and adjustbox == 0:
+            latex_string += r"\begin{adjustbox}{center}" + "\n"
+            end_adjustbox = True
+        elif adjustbox > 0 and center == False:
+            latex_string += r"\begin{adjustbox}{max width=" + f"{adjustbox}" + r"\textwidth}" + "\n"
+            end_adjustbox = True    
+        elif adjustbox > 0 and center == True:
+            latex_string += r"\begin{adjustbox}{center,max width=" + f"{adjustbox}" + r"\textwidth}" + "\n"
+            end_adjustbox = True
+        if scalebox:
+            latex_string += r"\begin{adjustbox}{scale=" + f"{scalebox}" + "}" + "\n"
+            end_adjustbox = True
+        latex_string += df_latex_input
+        if end_adjustbox:
+            latex_string += "\n\\end{adjustbox}"
+        latex_string += "\n" + end_input
+        return latex_string
+
+    else:
+        with open(filename, "w") as f:
+            f.write(start_input + "\n")
+            f.write(caption_input + "\n")
+            if center == True and adjustbox == 0:
+                f.write(r"\begin{adjustbox}{center}" + "\n")
+                end_adjustbox = True
+            elif adjustbox > 0 and center == False:
+                f.write(r"\begin{adjustbox}{max width=" + f"{adjustbox}" + r"\textwidth}" + "\n")
+                end_adjustbox = True    
+            elif adjustbox > 0 and center == True:
+                f.write(r"\begin{adjustbox}{center,max width=" + f"{adjustbox}" + r"\textwidth}" + "\n")
+                end_adjustbox = True
+            if scalebox:
+                f.write(r"\begin{adjustbox}{scale=" + f"{scalebox}" + "}" + "\n")
+                end_adjustbox = True
+            f.write(df_latex_input)
+            if end_adjustbox:
+                f.write("\n\\end{adjustbox}")
+            f.write("\n" + end_input)

@@ -237,3 +237,5 @@ def get_cbs(hf_X, corr_X, hf_Y, corr_Y, X=2, Y=3, family='cc', convert_Hartree=F
         if output==True:
             print('CBS({0}/{1})  HF: {2:.9f} Corr: {3:.9f} Tot: {4:.9f}'.format(X,Y, hf_cbs + shift, corr_cbs, (hf_cbs+corr_cbs) + shift))
         return hf_cbs + shift, corr_cbs, (hf_cbs+corr_cbs) + shift
+    
+

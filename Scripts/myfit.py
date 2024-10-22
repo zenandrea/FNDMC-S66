@@ -12,6 +12,9 @@ def fun_quad( x, a, b, c ):
 def fun_cub( x, a, b, c, d ):
     return a + b * x + c * x**2 + d * x**3
 
+def fun_quart( x, a, b, c, d, e ):
+    return a + b * x + c * x**2 + d * x**3 + e * x**4
+
 
 def fit_err( x, y, ye, fitfun=0, xmax=0, M=1000, Nx=100 ):
     from scipy.optimize import curve_fit
