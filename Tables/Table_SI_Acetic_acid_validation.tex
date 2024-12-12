@@ -1,0 +1,18 @@
+\begin{table}
+\caption{\label{tab:acetic_acid_validation}Validation of the DLA localization scheme with an LDA trial wave-function for the AcOH$\cdots$AcOH dimer (ID 20). The smallest time step $\tau$ and the corresponding interaction energy $\Delta E_\textrm{int}$ are reported using various trial wave-functions, localization schemes as well as with all-electron LDA}
+\begin{adjustbox}{center}
+\begin{tabular}{llr}
+\toprule
+ & $\tau$ & $\Delta E_\textrm{int}$ \\ 
+\midrule
+LDA//DLA(eCEPP)//CASINO & 0.003 & -20.27$\pm$0.08 \\
+LDA//TM(eCEPP)//CASINO & 0.003 & -19.99$\pm$0.08 \\
+LDA//DTM(eCEPP)//CASINO & 0.003 & -20.15$\pm$0.10 \\
+LDA//TM(ccECP)//QMCPACK & 0.002 & -20.25$\pm$0.14 \\
+PBE//TM(ccECP)//QMCPACK & 0.010 & -20.10$\pm$0.06 \\
+PBE0//TM(ccECP)//QMCPACK & 0.010 & -20.17$\pm$0.06 \\
+LDA//AE//QMCPACK & 0.002 & -20.19$\pm$0.11 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
